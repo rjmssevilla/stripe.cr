@@ -9,7 +9,6 @@ class Stripe::Subscription
     Active
     PastDue
     Canceled
-    Unpaid
   end
 
   class Item
