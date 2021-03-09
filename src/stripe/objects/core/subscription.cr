@@ -10,9 +10,6 @@ class Stripe::Subscription
     PastDue
     Canceled
     Unpaid
-    Open
-    RequiresPaymentMethod
-    Paid
   end
 
   class Item
