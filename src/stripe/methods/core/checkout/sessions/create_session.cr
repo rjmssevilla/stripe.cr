@@ -11,14 +11,15 @@ class Stripe::Checkout::Session
     line_items : Array(NamedTuple(quantity: Int32, price: String))? = nil,
     expand : Array(String)? = nil,
     subscription_data : NamedTuple(metadata: Hash(String, String)?)? = nil,
-    allow_promotion_codes : Bool = false
+    allow_promotion_codes : Bool = false,
+    metadata : Hash(String, String)? = nil
   ) : Stripe::Checkout::Session
     customer = customer.not_nil!.id if customer.is_a?(Customer)
 
     io = IO::Memory.new
     builder = ParamsBuilder.new(io)
 
-    {% for x in %w(mode payment_method_types cancel_url success_url client_reference_id customer customer_email line_items expand subscription_data allow_promotion_codes) %}
+    {% for x in %w(mode payment_method_types cancel_url success_url client_reference_id customer customer_email line_items expand subscription_data allow_promotion_codes metadata) %}
       builder.add({{x}}, {{x.id}}) unless {{x.id}}.nil?
     {% end %}
 
