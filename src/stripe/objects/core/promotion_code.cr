@@ -5,7 +5,7 @@ class Stripe::PromotionCode
   getter id : String
 
   getter code : String
-  getter coupon : Stripe::Coupon?
+  getter coupon : Stripe::Coupon
   getter metadata : Hash(String, String | Nil)?
   getter active : Bool
 
